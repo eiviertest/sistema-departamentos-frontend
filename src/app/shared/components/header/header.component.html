@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <ng-container *ngIf="!isAdmin; else viewDepartamento">
+      <span>Sistema Departamentos</span>
+      <span class="spacer"></span>
+    </ng-container>
+    <div>
+        <a *ngIf="!isAdmin" mat-button [routerLink]="'/login'">Iniciar Sesion</a>
+        <a *ngIf="isAdmin" mat-button [routerLink]="'/departamento'">Departamentos</a>
+        <a *ngIf="isAdmin" mat-button >Cerrar Sesión</a>
+        <button type="button" mat-button (click)="isAdmin = !isAdmin">Change</button>
+    </div>
+</mat-toolbar>
+
+<ng-template #viewDepartamento>
+  <button mat-icon-button (click)="onToggleSidenav()">
+    <mat-icon>menu_book</mat-icon>
+  </button>
+  <span>Sistema Departamentos</span>
+  <span class="spacer"></span>
+</ng-template>
