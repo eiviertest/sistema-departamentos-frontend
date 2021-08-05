@@ -4,12 +4,19 @@
       <span class="spacer"></span>
     </ng-container>
     <div>
-        <a *ngIf="!isAdmin" mat-button [routerLink]="'/login'">Iniciar Sesion</a>
-        <a *ngIf="isAdmin" mat-button [routerLink]="'/departamento'">Departamentos</a>
-        <a *ngIf="isAdmin" mat-button >Cerrar Sesión</a>
+        <a  *ngIn="!isLogged; else viewLogout"mat-button routerLink="/login">Iniciar Sesion</a>
+        <a  mat-button routerLink="/departamento">Departamentos</a>
+        <a  mat-button (click)="onLogout()">Cerrar Sesión</a>
         <button type="button" mat-button (click)="isAdmin = !isAdmin">Change</button>
     </div>
 </mat-toolbar>
+
+<ng-template #viewLogout>
+  <button mat-icon-button (click)="onToggleSidenav()">
+    <mat-icon>menu_book</mat-icon>
+  </button>
+  <a  mat-button (click)="onLogout()">Cerrar Sesión</a>
+</ng-template>
 
 <ng-template #viewDepartamento>
   <button mat-icon-button (click)="onToggleSidenav()">
