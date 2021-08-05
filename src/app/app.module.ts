@@ -9,12 +9,14 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 
 import { MaterialModule } from '@app/material.modules';
 import { SidebarModule } from './shared/components/sidebar/sidebar.module';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
