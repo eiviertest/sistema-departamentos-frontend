@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { MaterialModule } from '@app/material.modules';
 import { SidebarModule } from './shared/components/sidebar/sidebar.module';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { AdminInterceptor } from './shared/interceptors/admin-interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     MaterialModule,
     SidebarModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: AdminInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
