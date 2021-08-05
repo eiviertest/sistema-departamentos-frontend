@@ -8,6 +8,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTableModule} from '@angular/material/table';
 
 const myModules = [MatButtonModule, 
                    MatCardModule, 
@@ -17,7 +20,10 @@ const myModules = [MatButtonModule,
                    MatListModule,
                    MatFormFieldModule,
                    MatInputModule,
-                   MatSnackBarModule
+                   MatSnackBarModule,
+                   MatDialogModule,
+                   MatProgressSpinnerModule,
+                   MatTableModule
                 ];
 
 @NgModule({
