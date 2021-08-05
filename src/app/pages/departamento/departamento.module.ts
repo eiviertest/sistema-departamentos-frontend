@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DepartamentoRoutingModule } from './departamento-routing.module';
 import { DepartamentoComponent } from './departamento.component';
+import { MaterialModule } from '@app/material.modules';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DepartamentoComponent } from './departamento.component';
   ],
   imports: [
     CommonModule,
-    DepartamentoRoutingModule
+    DepartamentoRoutingModule,
+    MaterialModule
   ]
 })
 export class DepartamentoModule { }
