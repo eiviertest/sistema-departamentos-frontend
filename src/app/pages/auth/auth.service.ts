@@ -6,6 +6,8 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from '@env/environment';
 import { map, catchError} from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -14,8 +16,15 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
+  private loggedIn = new BehaviorSubject<boolean>(false);
+
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private router: Router) {
     this.checkToken();
+  }
+
+  // Retorna el valor de lo que se encuentra en loggedIn 
+  get isLogged(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
   // Iniciar Sesión
@@ -23,6 +32,7 @@ export class AuthService {
     return this.http.post<UserResponse>(`${environment.URL_API}/auth`, authData).pipe(
       map((user : UserResponse) => {
         this.saveToken(user.token);
+        this.loggedIn.next(true);
         return user;
       }),
       catchError((err) => this.handleError(err))
@@ -33,6 +43,8 @@ export class AuthService {
   // Cerrar Sesión
   logOut(): void {
     localStorage.removeItem("token");
+    this.loggedIn.next(false);
+    this.router.navigate(['/login']);
   }
 
   
@@ -42,10 +54,7 @@ export class AuthService {
   private checkToken(): void {
     const userToken = localStorage.getItem("token")?.toString();
     const isExpired = helper.isTokenExpired(userToken);
-    //console.log(isExpired);
-    if(isExpired){
-      this.logOut();
-    }
+    isExpired ? this.logOut : this.loggedIn.next(true);
   } 
 
   // Guardar token
