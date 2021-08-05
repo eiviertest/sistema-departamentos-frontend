@@ -5,13 +5,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const myModules = [MatButtonModule, 
                    MatCardModule, 
                    MatToolbarModule, 
                    MatIconModule, 
                    MatSidenavModule,
-                   MatListModule
+                   MatListModule,
+                   MatDialogModule,
+                   MatProgressSpinnerModule
                 ];
 
 @NgModule({
