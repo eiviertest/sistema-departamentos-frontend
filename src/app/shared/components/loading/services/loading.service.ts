@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { LoadingComponent } from '../loading.component';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class LoadingService {
 
   private _dialogRef: MatDialogRef<LoadingComponent> | undefined;
-  private _config: MatDialogRef = {
+  private _config: MatDialogConfig = {
     disableClose: true
   };
 
