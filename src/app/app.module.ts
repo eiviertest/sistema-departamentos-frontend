@@ -9,6 +9,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 
 import { MaterialModule } from '@app/material.modules';
 import { SidebarModule } from './shared/components/sidebar/sidebar.module';
+import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { AdminInterceptor } from './shared/interceptors/admin-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -25,7 +26,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    SidebarModule
+    SidebarModule,
+    HttpClientModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AdminInterceptor, multi: true
