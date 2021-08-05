@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { DepartamentoRoutingModule } from './departamento-routing.module';
 import { DepartamentoComponent } from './departamento.component';
 import { MaterialModule } from '@app/material.modules';
-
+import { ModalFormularioComponent } from './components/modal-formulario/modal-formulario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    DepartamentoComponent
+    DepartamentoComponent,
+    ModalFormularioComponent
   ],
   imports: [
     CommonModule,
     DepartamentoRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DepartamentoModule { }

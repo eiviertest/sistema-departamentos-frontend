@@ -1,20 +1,14 @@
 <mat-toolbar color="primary">
-    <ng-container *ngIf="!isAdmin; else viewDepartamento">
+    <ng-container *ngIf="!isLogged; else viewDepartamento">
       <span>Sistema Departamentos</span>
       <span class="spacer"></span>
     </ng-container>
-    <div>
-        <a  *ngIn="!isLogged; else viewLogout"mat-button routerLink="/login">Iniciar Sesion</a>
-        <a  mat-button (click)="onLogout()">Cerrar Sesión</a>
-    </div>
+      <a *ngIf="!isLogged; else viewLogout" mat-button routerLink="/login">Iniciar Sesion</a>
 </mat-toolbar>
 
 <ng-template #viewLogout>
-  <button mat-icon-button (click)="onToggleSidenav()">
-    <mat-icon>menu_book</mat-icon>
-  </button>
-  <a  mat-button routerLink="/departamento">Departamentos</a>
-  <a  mat-button (click)="onLogout()">Cerrar Sesión</a>
+  <!--<a  mat-button (click)="onLogout()">Cerrar Sesión</a>
+  <a  mat-button routerLink="/departamento">Departamentos</a>-->
 </ng-template>
 
 <ng-template #viewDepartamento>

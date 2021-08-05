@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  hide = true;
   private subscriptions: Subscription = new Subscription();
+  private destroy$ = new Subject<any>();
 
   loginForm = this.fb.group({
     username: ['', [Validators.required]],
@@ -23,8 +25,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {  }
 
+  // Subscripcion mediante onDestroy
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onLogin(): void{
@@ -44,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(campo != null){
       if(campo.errors?.required){
         message = "Este campo es requerido";
-      } else if(campo.errors?.minlength){
+      } else if(campo.hasError('minlength')){
         message = "Los caracteres minimos son 4";
       }
     }

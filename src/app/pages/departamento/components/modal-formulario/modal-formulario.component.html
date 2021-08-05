@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>{{ data?.title }}</h2>
+<mat-dialog-content>
+    <form [formGroup]="departamentoForm">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Descripcion: </mat-label>
+            <input formControlName="descripcion" matInput required>
+            <mat-error>
+                {{ getErrorMessage('descripcion') }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width"  appearance="outline">
+            <mat-label>Planta</mat-label>
+            <input formControlName="planta" matInput required>
+            <mat-error>
+                {{ getErrorMessage('planta') }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fecha de construccion</mat-label>
+            <input formControlName="fechaConstruccion" type="date" matInput required>
+            <mat-error>
+                {{ getErrorMessage('fechaConstruccion') }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Clave de encargado</mat-label>
+            <input formControlName="cveEncargado" matInput required>
+            <mat-error>
+                {{ getErrorMessage('cveEncargado') }}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-dialog-close>
+        <mat-icon>cancel</mat-icon>
+        Cancelar
+    </button>
+    <button mat-raised-button color="primary" (click)="onSave()">
+        <mat-icon>save</mat-icon>
+        Guardar
+    </button>
+</mat-dialog-actions>

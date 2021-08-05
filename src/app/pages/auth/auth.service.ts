@@ -16,10 +16,20 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
 
+  private user = new BehaviorSubject<UserResponse | null>(null);
+
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar, private router: Router) {
     this.checkToken();
+  }
+
+  get user$(): Observable<UserResponse | null> {
+    return this.user.asObservable();
+  }
+
+  get userValue(): UserResponse | null {
+    return this.user.getValue();
   }
 
   // Retorna el valor de lo que se encuentra en loggedIn 
@@ -31,7 +41,7 @@ export class AuthService {
   logIn(authData: User): Observable<UserResponse | void>{
     return this.http.post<UserResponse>(`${environment.URL_API}/auth`, authData).pipe(
       map((user : UserResponse) => {
-        this.saveToken(user.token);
+        this.saveLocalStorage(user);
         this.loggedIn.next(true);
         return user;
       }),
@@ -52,15 +62,27 @@ export class AuthService {
   // true = Que el token está expirado
   // false = Que el token no está expirado
   private checkToken(): void {
-    const userToken = localStorage.getItem("token")?.toString();
-    const isExpired = helper.isTokenExpired(userToken);
-    isExpired ? this.logOut : this.loggedIn.next(true);
+    const user =JSON.parse(String(localStorage.getItem('user')));
+   if (user){
+      const isExpired = helper.isTokenExpired(user.token);
+     
+      if (isExpired)
+        this.logOut();
+      else{
+        this.loggedIn.next(true);
+      }
+    }
   } 
 
-  // Guardar token
+  /* Guardar token
   private saveToken(token: string): void {
     localStorage.setItem("token", token);
-  }
+  } */
+
+  private saveLocalStorage(user: UserResponse): void {
+    const {cveUsuario, message, ...rest} = user;
+    localStorage.setItem('user', JSON.stringify(rest));
+  } 
 
 
   // Manejar Errores

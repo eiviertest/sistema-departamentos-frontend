@@ -6,41 +6,58 @@
     </mat-card-header>
     <mat-card-content>
         <div class="buttonStyle">
-            <button mat-rised-button color="primary">
-                <mat-icon>add</mat-icon>
+            <button type="button" mat-raised-button color="primary" style="margin: 2ch;" (click)="onOpenModal()">
+              <mat-icon>add</mat-icon>
                 <span>Agregar</span>
             </button>
         </div>
     </mat-card-content>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="lstDepartamentos" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <!-- Descripcion -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+          <td mat-cell *matCellDef="let departamento"> {{departamento.descripcion}} </td>
         </ng-container>
       
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <!-- Planta -->
+        <ng-container matColumnDef="planta">
+          <th mat-header-cell *matHeaderCellDef> Planta </th>
+          <td mat-cell *matCellDef="let departamento"> {{departamento.planta}} </td>
         </ng-container>
       
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <!-- Fecha de construccion -->
+        <ng-container matColumnDef="fechaConstruccion">
+          <th mat-header-cell *matHeaderCellDef> Fecha de construccion </th>
+          <td mat-cell *matCellDef="let departamento"> {{departamento.fechaConstruccion}} </td>
         </ng-container>
       
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <!-- Clave de encargado-->
+        <ng-container matColumnDef="cveEncargado">
+          <th mat-header-cell *matHeaderCellDef> Clave de encargado </th>
+          <td mat-cell *matCellDef="let departamento"> {{departamento.cveEncargado}} </td>
         </ng-container>
       
+        <!-- Editar -->
+        <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef> Editar </th>
+          <td mat-cell *matCellDef="let departamento">
+            <button type="button" mat-icon-button color="primary" (click)="onOpenModal(departamento)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Eliminar -->
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let departamento">
+            <button mat-icon-button color="warn" (click)="onDelete(departamento.cveDepa)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>      
