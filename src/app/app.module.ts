@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { AdminInterceptor } from './shared/interceptors/admin-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UtilsService } from './shared/services/util.services';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     SidebarModule,
     HttpClientModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: AdminInterceptor, multi: true
-  }],
+  providers: [UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
