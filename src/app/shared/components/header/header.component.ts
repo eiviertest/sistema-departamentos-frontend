@@ -1,6 +1,7 @@
 import { Component, EventEmitter , OnDestroy, OnInit, Output } from '@angular/core';
 import { AuthService } from '@app/pages/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription();
-
+  
   // Variable que indica si está logueado o no 
   // true = si está logueado
   // false = no está logueado
@@ -26,8 +27,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
   }
 
+  // Subscripcion mediante suscribe
   ngOnInit(): void {
     this.subscriptions.add(
+    
     this.authSvc.isLogged.subscribe(res => this.isLogged = res));
   }
 
