@@ -5,7 +5,7 @@ import { CheckLoginGuard } from '@shared/guards/check-login.guard';
 const routes: Routes = [
   { 
     path: '',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) 
+    loadChildren: () => import('./pages/departamento/departamento.module').then(m => m.DepartamentoModule) 
   }, 
   { path: 'notFound',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) 
