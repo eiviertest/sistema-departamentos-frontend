@@ -11,6 +11,7 @@ import { MaterialModule } from '@app/material.modules';
 import { SidebarModule } from './shared/components/sidebar/sidebar.module';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { AdminInterceptor } from './shared/interceptors/admin-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
