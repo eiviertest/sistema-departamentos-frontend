@@ -5,15 +5,13 @@ import { CheckLoginGuard } from '@shared/guards/check-login.guard';
 const routes: Routes = [
   { 
     path: '',
-    loadChildren: () => import('./pages/departamento/departamento.module').then(m => m.DepartamentoModule), 
-    canActivate: [CheckLoginGuard] 
+    loadChildren: () => import('./pages/departamento/departamento.module').then(m => m.DepartamentoModule) 
   }, 
   { path: 'notFound',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) 
   },
   { path: 'departamento',
-    loadChildren: () => import('./pages/departamento/departamento.module').then(m => m.DepartamentoModule), 
-    canActivate: [CheckLoginGuard] 
+    loadChildren: () => import('./pages/departamento/departamento.module').then(m => m.DepartamentoModule) 
   },
   { path: 'login',
     loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule), 
