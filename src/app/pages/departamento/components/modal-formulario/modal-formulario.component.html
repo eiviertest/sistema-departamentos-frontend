@@ -3,19 +3,30 @@
     <form [formGroup]="departamentoForm">
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Descripcion: </mat-label>
-            <input formControlName="descripcion" matInput required>
+            <textarea formControlName="descripcion" matInput required maxlength="500"></textarea>
             <mat-error>
                 {{ getErrorMessage('descripcion') }}
             </mat-error>
         </mat-form-field>
 
+        <br>
+
         <mat-form-field class="full-width"  appearance="outline">
             <mat-label>Planta</mat-label>
-            <input formControlName="planta" matInput required>
-            <mat-error>
-                {{ getErrorMessage('planta') }}
-            </mat-error>
+            <mat-select placeholder="Planta" required>
+                <mat-option value="sotano">
+                    Sotano
+                </mat-option>
+                <mat-option value="planta_baja">
+                    Planta baja
+                </mat-option>
+                <mat-option value="planta_alta">
+                    Planta alta
+                </mat-option>
+            </mat-select>
         </mat-form-field>
+        
+        <br>
 
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Fecha de construccion</mat-label>
@@ -24,6 +35,8 @@
                 {{ getErrorMessage('fechaConstruccion') }}
             </mat-error>
         </mat-form-field>
+
+        <br>
 
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Clave de encargado</mat-label>
@@ -35,13 +48,15 @@
     </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-    <button mat-dialog-close>
-        <mat-icon>cancel</mat-icon>
-        Cancelar
-    </button>
-    <button mat-raised-button color="primary" (click)="onSave()">
-        <mat-icon>save</mat-icon>
-        Guardar
-    </button>
-</mat-dialog-actions>
+<div class="example-container">
+    <mat-dialog-actions align="end">
+        <button mat-dialog-close>
+            <mat-icon>cancel</mat-icon>
+            Cancelar
+        </button>
+        <button mat-raised-button color="primary" (click)="onSave()">
+            <mat-icon>save</mat-icon>
+            Guardar
+        </button>
+    </mat-dialog-actions>
+</div>
