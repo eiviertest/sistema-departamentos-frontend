@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DepartamentoResponse } from '@app/shared/models/departamento.interface';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 import { ModalFormularioComponent } from './components/modal-formulario/modal-formulario.component';
 import { DepartamentoService } from './services/departamento.service';
 
@@ -27,7 +28,7 @@ export class DepartamentoComponent implements OnInit, OnDestroy {
   ];
   lstDepartamentos: DepartamentoResponse[] = [];
   
-  constructor(private departamentoSvc: DepartamentoService, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(private departamentoSvc: DepartamentoService, private dialog: MatDialog, private _snackBar: MatSnackBar, private authSvc: AuthService) { }
   
 
   ngOnInit(): void {

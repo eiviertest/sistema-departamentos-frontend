@@ -42,13 +42,12 @@ export class AuthService {
     return this.http.post<UserResponse>(`${environment.URL_API}/auth`, authData).pipe(
       map((user : UserResponse) => {
         this.saveLocalStorage(user);
-        this.loggedIn.next(true);
+        this.user.next(user);
         return user;
       }),
       catchError((err) => this.handleError(err))
     );
   }
-
   
   // Cerrar Sesión
   logOut(): void {
@@ -80,7 +79,7 @@ export class AuthService {
   } */
 
   private saveLocalStorage(user: UserResponse): void {
-    const {cveUsuario, message, ...rest} = user;
+    const {message, ...rest} = user;
     localStorage.setItem('user', JSON.stringify(rest));
   } 
 

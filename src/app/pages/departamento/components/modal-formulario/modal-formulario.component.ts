@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DepartamentoService } from '../../services/departamento.service';
-
+import { AuthService } from '../../../auth/auth.service';
 
 enum Action{
   EDIT = "edit",
@@ -28,10 +28,11 @@ export class ModalFormularioComponent implements OnInit, OnDestroy {
     descripcion: ['', [Validators.required]],
     planta: ['', [Validators.required]],
     fechaConstruccion: ['', [Validators.required]],
-    cveEncargado: ['', [Validators.required]]
+    cveEncargado: [this.authSvc.userValue?.cveUsuario]
   })
 
-  constructor(public dialogRef: MatDialogRef<ModalFormularioComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private DepartamentoSvc: DepartamentoService, private _snackBar: MatSnackBar) { }
+  constructor(public dialogRef: MatDialogRef<ModalFormularioComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, 
+  private DepartamentoSvc: DepartamentoService, private _snackBar: MatSnackBar, private authSvc: AuthService) { }
   
   ngOnInit(): void {
     if(this.data?.departamento.hasOwnProperty("cveDepa")){
