@@ -90,7 +90,7 @@ export class AuthService {
     let errorMessage = "Ocurrio un error";
 
     if(err){
-      errorMessage = `Error: ${err.message}`;
+      errorMessage = `Error :c: ${ typeof err.error.message == 'undefined' ? err.message : err.error.message }`;
       this._snackBar.open(errorMessage, '', {
         duration: 6000
       });
