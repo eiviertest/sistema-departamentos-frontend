@@ -23,14 +23,6 @@ export class SidebarComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
     .subscribe(user => {
       this.lstMenu = []
-      if(user){
-        this.lstMenu = [
-          {
-          nombre: 'Departamento',
-          icono: 'home',
-          ruta: '/departamento'
-          }
-        ]}
     })
   }
 
