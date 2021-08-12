@@ -43,6 +43,7 @@ export class AuthService {
       map((user : UserResponse) => {
         this.saveLocalStorage(user);
         this.user.next(user);
+        this.loggedIn.next(true);
         return user;
       }),
       catchError((err) => this.handleError(err))
